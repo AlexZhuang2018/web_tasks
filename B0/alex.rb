@@ -1,5 +1,4 @@
 #!/usr/bin/ruby
-# coding utf-8
 class Student
   # initialize
   def initialize
@@ -38,7 +37,7 @@ class Student
     puts "更改学生信息请输入:\t3\n"
     puts "查询学生信息输入：\t4\n"
     puts "打印所有学生信息输入：\t5\n"
-    puts "退出输入：\t\t0\n"
+    puts "退出输入：\t\t0(或其他)\n"
     puts '请输入：'
     n = gets    # 接受输入
     n = n.to_i  # 更改数据类型
@@ -59,29 +58,58 @@ class Student
 
   # add
   def add
+    # 写入文件
+    ofile = File.new('Student', 'a+')
     puts "**学生添加**\n"
-    puts '清输入要添加的学生的id：'
-    id = gets
+    # 添加id
+    for i in 1..1
+      puts '清输入要添加的学生的id：'
+      id = gets
+      ofile.syswrite(id)
+      arr = IO.readlines('Student')
+      flag = false
+      j = 0
+      while j < arr.size
+        flag = true if arr[j].chomp == id.chomp
+        j += 4
+      end
+      if flag
+        puts '该id已经存在，清重新输入！'
+        redo
+      end
+    end
+    # 添加name
     puts '请输入要添加的学生的name：'
     name = gets
-    puts '请输入要添加的学生的gender（man or woman）:'
-    gender = gets
-    puts '请输入要添加的学生的age：'
-    age = gets
-    ofile = File.new('Student', 'a+')
-    # 写入文件
-    ofile.syswrite(id)
-    ofile.syswrite(name.to_s)
-    ofile.syswrite(gender.to_s)
-    ofile.syswrite(age.to_s)
+    # 添加gender
+    for i in 1..1
+      puts '请输入要添加的学生的gender（man or woman）:'
+      gender = gets
+      ofile.syswrite(gender.to_s)
+      if (gender.chomp != 'man') && (gender.chomp != 'woman')
+        puts '输入错误！请重新输入！'
+        redo
+      end
+    end
+    # 添加age
+    for i in 1..1
+      puts '请输入要添加的学生的age：'
+      age = gets
+      ofile.syswrite(age.to_s)
+      if age.chomp.to_i < 15 || age.chomp.to_i > 20
+        puts '清输入15～20'
+        redo
+      end
+    end
+    # 添加完成
     ofile.close
     puts '成功添加！'
-    puts "\n是否继续添加？继续请输入1，停止请输入2\n"
+    puts "\n是否继续添加？继续请输入1，停止请输入2(或其他)\n"
     n = gets
     n = n.to_i
     if n == 1
       add # 进入学生添加界面
-    elsif n == 2
+    else
       function_select # 进入功能选择界面
     end
   end
@@ -102,7 +130,6 @@ class Student
       end
       i += 4
     end
-
     # 写回到文件中
     if index != -4 # 如果找到了该id
       ofile = File.new('Student', 'w+')
@@ -116,13 +143,12 @@ class Student
     else # 如果没有找到
       puts '不存在该学生的信息，所以无需删除'
     end
-
-    puts "\n是否继续删除？继续请输入1，停止请输入2\n"
+    puts "\n是否继续删除？继续请输入1，停止请输入2(或其他)\n"
     n = gets
     n = n.to_i
     if n == 1
       delete # 进入学生删除界面
-    elsif n == 2
+    else
       function_select # 进入功能选择界面
     end
   end
@@ -135,24 +161,52 @@ class Student
     id_to_change = gets
     id_to_change = id_to_change.to_i
     i = 0
-    flah = false
+    flag0 = false # 是否找到了这个id
     while i < arr.size                # 寻找那个id
       if arr[i].to_i == id_to_change  # 如果找到了就更改
-        flag = true
-        puts '请输入更改后的id：'
-        arr[i] = gets
+        flag = true # 是否已经存在？
+        # 更改id
+        for k in 1..1
+          puts '请输入更改后的id：'
+          arr[i] = gets
+          flag = false
+          j = 0
+          while j < arr.size
+            flag = true if arr[j].chomp == arr[i].chomp && j != i
+            j += 4
+          end
+          if flag
+            puts '该id已经存在，清重新输入！'
+            redo
+          end
+        end
+        # 更改name
         puts '请输入更改后的name：'
         arr[i + 1] = gets
-        puts '请输入更改后的gender：'
-        arr[i + 2] = gets
-        puts '请输入更改后的age：'
-        arr[i + 3] = gets
+        # 更改gender
+        for i in 1..1
+          puts '请输入更改后的gender：'
+          arr[i + 2] = gets
+          if (arr[i + 2].chomp != 'man') && (arr[i + 2].chomp != 'woman')
+            puts '输入错误！请重新输入！'
+            redo
+          end
+        end
+        # 更改age
+        for i in 1..1
+          puts '请输入更改后的age：'
+          arr[i + 3] = gets
+          if arr[i + 3].chomp.to_i < 15 || arr[i + 3].chomp.to_i > 20
+            puts '清输入15～20'
+            redo
+          end
+        end
         break
       end
       i += 4
     end
 
-    if flag # 如果找到了该id
+    if flag0 # 如果找到了该id
       # 写回到文件
       ofile = File.new('Student', 'w+')
       i = 0
@@ -166,12 +220,12 @@ class Student
       puts '不存在该学生的信息，所以无法更改'
     end
 
-    puts "\n是否继续更改？继续请输入1，停止请输入2\n"
+    puts "\n是否继续更改？继续请输入1，停止请输入2(或其他)\n"
     n = gets
     n = n.to_i
     if n == 1
       change # 进入学生信息更改界面
-    elsif n == 2
+    else
       function_select # 进入功能选择界面
     end
   end
@@ -200,12 +254,12 @@ class Student
 
     puts '抱歉，该id不存在' unless flag # 如果没有找到该id
 
-    puts "\n是否继续查询？继续请输入1，停止请输入2\n"
+    puts "\n是否继续查询？继续请输入1，停止请输入2(或其他)\n"
     n = gets
     n = n.to_i
     if n == 1
       search # 进入学生信息查询界面
-    elsif n == 2
+    else
       function_select # 进入功能选择界面
     end
   end
@@ -218,12 +272,26 @@ class Student
     # 排序
     puts "下面将会对数据排序，清选择排序方式：\n"
     puts "1.按id排序\t2.按name排序\t3.按age排序\n"
-    n = gets
-    n = n.to_i
+    n = nil
+    for i in 1..1
+      n = gets
+      n = n.to_i
+      if n != 1 && n != 2 && n != 3
+        puts '请输入1或2或3：'
+        redo
+      end
+    end
     puts "升序还是降序？\n"
     puts "升序输入1，降序输入-1\n"
-    a = gets
-    a = a.to_i
+    a = nil
+    for i in 1..1
+      a = gets
+      a = a.to_i
+      if a != 1 && a != -1
+        puts '请输入1或-1：'
+        redo
+      end
+    end
     if n == 1
       id_sort(arr, a)
     elsif n == 2
