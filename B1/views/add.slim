@@ -1,0 +1,14 @@
+form action="/add" method="POST"
+  <center>
+    h1 Add Message
+    <textarea cols="50" rows="8" name = 'message' onchange="this.value=this.value.substring(0, 200)" onkeydown="this.value=this.value.substring(0, 200)" onkeyup="this.value=this.value.substring(0, 200)" onfocus="if(value=='---至少10字，限200字---'){value=''}" onblur="if (value ==''){value='---至少10字，限200字---'}">---至少10字，限200字---</textarea>
+    <br>
+  </center>
+  <center>
+    <text><h6>Your name:</text>
+    input type="text" name="author"
+    <text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+    <button type="button" onclick="if(message.value.length>=10&&author.value.length>0&&message.value!='---至少10字，限200字---'){form.submit()}else{div1.style='display:block;color:red;'}">Submin >></button>
+    <br>
+    <div id="div1" style="display:none;"}>留言至少10字，作者不为空！</div>
+  </center>
