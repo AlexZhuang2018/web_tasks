@@ -1,0 +1,23 @@
+- if File.exist?("id/#{@id}")
+      <center>
+        <h1> Search Results <br>
+      </center>
+      <center>
+        <table border='1' width='95%'>
+          <tr> <td>id:</td> <td>#{@id}</td> </tr>
+          <tr> <td>author:</td> <td>#{@arr[0]}</td> </tr>
+          <tr> <td>created_at:</td> <td>#{@arr[1]}</td> </tr>
+          <tr> <td>message:</td> <td>#{@mes}</td> </tr>
+        </table>
+        <br>
+        <button type='button' onclick='location.href=&quot;/&quot;'>Back to the HOme</button>
+      </center>
+- else
+      <center>
+        <h1> Search Results <br>
+      </center>
+      <center>
+      <text>抱歉，该id:'#{@id}'已经删除或还未添加</text>
+      <br><br>
+      <button type='button' onclick='location.href=&quot;/&quot;'>Back to the HOme</button>
+      </center>
