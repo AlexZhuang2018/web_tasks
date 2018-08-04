@@ -1,0 +1,12 @@
+-if session[:id]==nil
+  text style="color:red;" Please login first!
+  br
+  a href="/login" Click me to login
+-else
+  form action="/search" method="POST"
+    center
+      h1 Search
+      text <h6> The author you want to search:
+      input type="text" name="author"
+      text &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      input.button type="submit" value='Submin >>'

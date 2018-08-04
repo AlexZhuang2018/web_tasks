@@ -1,0 +1,19 @@
+form action='/register' method='POST'
+  center
+    h1 Register
+
+    text <h6> &nbsp;&nbsp;&nbsp;username:
+    input type='text' name='username'
+    br
+
+    text &nbsp;&nbsp;&nbsp;password:
+    input type='password' name='password1'
+    br
+
+    text input again:
+    input type='password' name='password2'
+    br
+
+    br
+    input.button type="button" value="Submit" onclick="if(password1.value==password2.value){form.submit()}else{div1.style='display:block;color:red;'}"
+    div id="div1" style="display:none;" 两次输入的密码不一致！

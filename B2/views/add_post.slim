@@ -1,0 +1,13 @@
+center
+  table border='1'
+    tr
+      td Your content is:
+      td #{@content}
+    tr
+      td Your user_id is:
+      td #{@user_id}
+    tr
+      td Your created_at is:
+      td #{Time.now}
+  br
+  input.button type='button' value="Back to the Home" onclick="location.href='/home'"

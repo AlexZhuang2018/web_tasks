@@ -1,0 +1,7 @@
+center
+  text #{@return}
+  br
+  -if @return=='注册成功！'
+    input.button type='button' value="go to login>>" onclick="location.href='/login'"
+  -else
+    input.button type='button' value="register again>>" onclick="location.href='/register'"

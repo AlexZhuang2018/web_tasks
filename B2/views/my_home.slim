@@ -1,0 +1,33 @@
+-if session[:id]==nil
+  text style="color:red;" Please login first!
+  br
+  a href="/login" Click me to login
+-else
+  Your ID is:#{session[:id]}
+  br
+  Your name is:#{User.where(id: session[:id])[0]['username']}
+  br
+  input.button type="button" value="change password" onclick="location.href='/change_password'"
+  hr
+  center
+    h2 My Messages
+  table border='1' width='100%'
+    tr
+      td width='10%' align='center' id
+      td width='50%' align='center' content
+      td width='30%' align='center' created_at
+      td width='10%' align='center' del
+
+  -if @return.empty?
+    text style="color:red;" You have no message.
+    br
+    a href="/add" Click me to add a message.
+  -else
+    -@return.each do |item|
+      table border='1' width='100%'
+        tr
+          td width='10%' align='center' #{item['id']}
+          td width='50%' align='center' #{item['content']}
+          td width='30%' align='center' #{item['created_at']}
+          td width='10%' align='center'
+            input.button type='button' id="#{item['id']}" value='del' onclick="location.href='/delete/#{item['id']}';"

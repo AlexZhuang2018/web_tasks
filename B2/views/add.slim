@@ -1,0 +1,13 @@
+-if session[:id]==nil
+  text style="color:red;" Please login first!
+  br
+  a href="/login" Click me to login
+-else
+  form action="/add" method="POST"
+    center
+      h1 Add Message
+      textarea cols="50" rows="8" name = 'message' value="---至少10字，限200字---" onchange="this.value=this.value.substring(0, 200)" onkeydown="this.value=this.value.substring(0, 200)" onkeyup="this.value=this.value.substring(0, 200)" onfocus="if(value=='---至少10字，限200字---'){value=''}" onblur="if (value ==''){value='---至少10字，限200字---'}"
+      br
+      input.button type="button" value="Submin >>" onclick="if(message.value.length>=10&&message.value!='---至少10字，限200字---'){form.submit()}else{div1.style='display:block;color:red;'}"
+      br
+      div id="div1" style="display:none;" 留言至少10字，作者不为空！
