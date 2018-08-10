@@ -1,19 +1,23 @@
-form action='/register' method='POST'
-  center
-    h1 Register
+div class="container" style="padding: 100px 200px 50px;"
+  form action='/register' method='POST'
+    center
+      h1 Register
 
-    text <h6> &nbsp;&nbsp;&nbsp;username:
-    input type='text' name='username'
-    br
+      div class="input-group"
+         span class="input-group-addon" username:
+         input type="text" class="form-control" placeholder="Input your name" name="username"
+      br
 
-    text &nbsp;&nbsp;&nbsp;password:
-    input type='password' name='password1'
-    br
+      div class="input-group"
+         span class="input-group-addon" password:
+         input type="text" class="form-control" placeholder="Input password" name="password1"
+      br
 
-    text input again:
-    input type='password' name='password2'
-    br
+      div class="input-group"
+         span class="input-group-addon" password:
+         input type="text" class="form-control" placeholder="Input your password again" name="password2"
+      br
 
-    br
-    input.button type="button" value="Submit" onclick="if(password1.value==password2.value){form.submit()}else{div1.style='display:block;color:red;'}"
-    div id="div1" style="display:none;" 两次输入的密码不一致！
+      br
+      input.button class="btn btn-primary" type="button" value="Submit" onclick="if(password1.value==password2.value){form.submit()}else{div1.style='display:block;color:red;'}"
+      div id="div1" style="display:none;" 两次输入的密码不一致！

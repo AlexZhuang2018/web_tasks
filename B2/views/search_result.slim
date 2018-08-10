@@ -1,19 +1,21 @@
-center
-  h1 #{@username}'s messages
-  table border='1' width='100%'
-    tr
-      td width='10%' align='center' id
-      td width='60%' align='center' content
-      td width='30%' align='center' created_at
-
-  -if @return.empty?
-    text style="color:red;" She/He have no message.
-  -else
-    -@return.each do |item|
-      table border='1' width='100%'
+div class="container"
+  center
+    h1 #{@username}'s messages
+    table border='1' class="table table-striped table-bordered"
+      thead
         tr
-          td width='10%' align='center' #{item['id']}
-          td width='60%' align='center' #{item['content']}
-          td width='30%' align='center' #{item['created_at']}
-  br
-  input.button type="button" value="Back to the home" onclick="location.href='/home'"
+          th width='10%' id
+          th width='60%' content
+          th width='30%' created_at
+
+    -if @return.empty?
+      text style="color:red;" She/He have no message.
+    -else
+      -@return.each do |item|
+        table border='1' class="table table-striped table-bordered"
+          tr
+            td width='10%' align='left' #{item['id']}
+            td width='60%' align='left' #{item['content']}
+            td width='30%' align='left' #{item['created_at']}
+    br
+    input.button type="button" class="btn btn-success" value="Back to the home" onclick="location.href='/home'"

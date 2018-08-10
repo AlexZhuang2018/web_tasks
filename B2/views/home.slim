@@ -1,34 +1,38 @@
--if session[:id]==nil
-  text style="color:red;" Please login first!
-  br
-  a href="/login" Click me to login
--else
-  text Welcome! Your ID is:#{session[:id]}
-  br
-  left
-    a href="/add" Add Message
-    text &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    a href="/search" Search
-    text &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    a href="/my_home" My Home
-    text &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    a href="/logout" Logout
+div class="container" style="padding: 10px 50px 50px;"
+  -if session[:id]==nil
+    text style="color:red;" Please login first!
+    br
+    a href="/login" Click me to login
+  -else
+    text Welcome! Your ID is:#{session[:id]}
+    br
+    input.button type="button" class="btn btn-primary"  value="Add Message" onclick="location.href='/add'"
+    text &nbsp;&nbsp;&nbsp;&nbsp;
+    input.button type="button" class="btn btn-primary"  value="Search" onclick="location.href='/search'"
+    text &nbsp;&nbsp;&nbsp;&nbsp;
+    input.button type="button" class="btn btn-primary"  value="My Home" onclick="location.href='/my_home'"
+    text &nbsp;&nbsp;&nbsp;&nbsp;
+    input.button type="button" class="btn btn-primary"  value="Logout" onclick="location.href='/logout'"
+    text &nbsp;&nbsp;&nbsp;&nbsp;
+
     hr
 
-  center
-    table border='1' width='100%'
-      tr
-        td width='60%' align='center' message
-        td width='10%' align='center' username
-        td width='30%' align='center' created_at
-  -if @result.size!=0
-    -@result.each do |item|
-      table border='1' width='100%'
-        tr
-          td width='60%' align='center' #{item['content']}
-          td width='10%' align='center' #{User.where(id: item['user_id'])[0]['username']}
-          td width='30%' align='center' #{item['created_at']}
-  -else
-    left
-      text Have no message!&nbsp&nbsp
-      a href="/add" create one immediately!
+    center
+      h2 All Messages
+      table class="table table-striped table-bordered" width='100%'
+        thead
+          tr
+            th width='60%' align='left' message
+            th width='10%' align='left' username
+            th width='30%' align='left' created_at
+    -if @result.size!=0
+      -@result.each do |item|
+        table class="table table-striped table-bordered" width='100%'
+          tr
+            td width='60%' align='left' #{item['content']}
+            td width='10%' align='left' #{User.where(id: item['user_id'])[0]['username']}
+            td width='30%' align='left' #{item['created_at']}
+    -else
+      left
+        text Have no message!&nbsp&nbsp
+        a href="/add" create one immediately!

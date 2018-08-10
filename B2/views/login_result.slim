@@ -1,11 +1,12 @@
-center
-  -if @return=='password error!'
-    text #{@return}
-    br
-    input.button type='button' value="login again>>" onclick="location.href='/login'"
-  -else
-    text #{@return}
-    br
-    input.button type='button' value="register>>" onclick="location.href='/register'"
-    text or
-    input.button type='button' value="login again>>" onclick="location.href='/login'"
+div class="container" style="padding: 100px 300px 50px;"
+  center
+    -if @return=='password error!'
+      text #{@return}
+      br
+      input.button type='button' class="btn btn-primary" value="login again>>" onclick="location.href='/login'"
+    -else
+      text #{@return}
+      br
+      input.button type='button' class="btn btn-primary" value="register>>" onclick="location.href='/register'"
+      text &nbsp;&nbsp;or&nbsp;&nbsp;
+      input.button type='button' class="btn btn-primary" value="login again>>" onclick="location.href='/login'"

@@ -1,7 +1,10 @@
-center
-  text #{@return}
-  br
-  -if @return=='注册成功！'
-    input.button type='button' value="go to login>>" onclick="location.href='/login'"
-  -else
-    input.button type='button' value="register again>>" onclick="location.href='/register'"
+div class="container" style="padding: 100px 100px 50px;"
+  center
+    text #{@return}
+    br
+    -if @return=='注册成功！'
+      br
+      input.button type='button' class="btn btn-success" value="go to login>>" onclick="location.href='/login'"
+    -else
+      br
+      input.button type='button' class="btn btn-primary" value="register again>>" onclick="location.href='/register'"
