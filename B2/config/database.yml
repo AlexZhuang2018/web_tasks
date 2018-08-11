@@ -1,0 +1,6 @@
+development:
+  adapter: mysql2
+  databases: web_tasks
+  username: root
+  password:
+  host: localhost
