@@ -1,8 +1,9 @@
 require 'sinatra'
 require 'slim'
 
-require './service/service_initialize'
-require './models/service_connect.rb'
+require 'sinatra/activerecord'
+require './config/environments'
+# require './service/service_initialize'
 require './models/Message'
 require './models/User'
 

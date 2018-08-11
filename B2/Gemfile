@@ -1,6 +1,6 @@
-source "https://rubygems.org"
+source "http://rubygems.org"
 
 gem "sinatra"
-gem "slim"
-gem "rail"
+gem "activerecord"
+gem "sinatra-activerecord"
 gem "mysql2"
