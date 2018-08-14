@@ -35,6 +35,7 @@
 |kinds  |string|分类--index|
 |author  |string|作者--index|
 |created_at  |timestampes|创作时间--index|
+|pass?  |string|是否过审核（T/F）--index|
 
 #### 留言表comments
 
