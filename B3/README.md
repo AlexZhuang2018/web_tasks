@@ -1,22 +1,3 @@
-### 前台controller
-|前台动作    |
-|:--------:|
-|register  |
-|login     |
-|文章       |
-|留言       |
-|意见反馈   |
-|logout    |
-
-### 后台controller
-|后台动作    |
-|:--------:|
-|login  |
-|文章管理     |
-|意见反馈管理       |
-|账户管理       |
-|logout    |
-
 #### 用户表users
 
 |字段名    |类型  |描述|
@@ -44,6 +25,7 @@
 |id        |int   |留言ID--主键|
 |commenter  |string|留言|
 |author  |string|作者--index|
+|author_id  |int|对应文章的id--index|
 |created_at  |timestampes|留言时间|
 
 #### 反馈表feedbacks
@@ -63,15 +45,3 @@
 |adminname  |string|管理员用户名|
 |password  |string|管理员密码|
 
-### 关联
-user has_many comments
-
-user has_many feedbacks
-
-comment belongs_to user
-
-feedback belongs_to user
-
-post has_many comments
-
-comment belongs_to post
