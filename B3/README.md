@@ -25,7 +25,7 @@
 |id        |int   |留言ID--主键|
 |commenter  |string|留言|
 |author  |string|作者--index|
-|author_id  |int|对应文章的id--index|
+|article_id  |int|对应文章的id--index|
 |created_at  |timestampes|留言时间|
 
 #### 反馈表feedbacks
