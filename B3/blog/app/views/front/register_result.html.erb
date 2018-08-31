@@ -1,0 +1,9 @@
+<div class="container" style="padding: 100px 100px 50px;">
+  <% if @return=='注册成功！' %>
+    <text style="color:green"><%= @return %></text>
+    <button class="btn btn-primary" onclick="location.href='/front/login'">click me to login</button>
+  <% else %>
+    <text style="color:red"><%= @return %></text>
+    <button class="btn btn-primary" onclick="location.href='/front/register'">click me to register again</button>
+  <% end %>
+</div>

@@ -1,0 +1,23 @@
+<div class="container" style="padding: 50px 300px 50px;">
+  <% if session[:username]==nil %>
+    <text style="color:red;"> Please login first! </text>
+    <br>
+    <a href="/front/login"> Click me to login </a>
+  <% else %>
+    <a href="/front/home"> Cancel and back to the home </a>
+    <form action='/front/write_feedback_result' method='write_feedback_result'>
+      <center>
+        <h1> Write Feedback
+      </center>
+      <br>
+
+      <textarea style="font-size:20px;" placeholder="Input the content:" rows="20" cols="45" name="content"></textarea>
+      <br><br>
+      <br>
+      <input type="button" class="btn btn-primary" value="Submit" onclick="if(content.value.length>0&&email.value.length>0){form.submit()}else{div1.style='display:block;color:red;'}"></input>
+      <div id="div1" style="display:none">
+        <text>反馈内容不能为空！</text>
+      </div>
+    </form>
+  <% end %>
+</div>

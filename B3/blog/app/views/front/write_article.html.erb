@@ -1,0 +1,43 @@
+<div class="container" style="padding: 50px 300px 50px;">
+  <% if session[:username]==nil %>
+    <text style="color:red;"> Please login first! </text>
+    <br>
+    <a href="/front/login"> Click me to login </a>
+  <% else %>
+    <a href="/front/home"> Cancel and back to the home </a>
+    <form action='/front/write_article_result' method='write_article_result'>
+      <center>
+        <h1> Write Article
+      </center>
+      <br><br>
+      <div class="input-group">
+         <span class="input-group-addon"> title:</span>
+         <input type="text" class="form-control" placeholder="Input the title:" name="title2"></input>
+      </div>
+      <br>
+
+      <textarea style="font-size:20px;" placeholder="Input the content:" rows="20" cols="45" name="content"></textarea>
+      <br><br>
+
+
+      <div class="input-group">
+         <span class="input-group-addon"> kinds:</span>
+         <select name="kinds">
+           <option value='请选择分类'>请选择分类</option>
+           <option value="人文">人文</option>
+           <option value="科技">科技</option>
+           <option value="教育">教育</option>
+           <option value="娱乐">娱乐</option>
+           <option value="体育">体育</option>
+           <option value="军事">军事</option>
+         </select>
+      </div>
+
+      <br>
+      <input type="button" class="btn btn-primary" value="Submit" onclick="if(title2.value.length>0 && content.value.length>0 && kinds.value!='请选择分类'){form.submit()}else{div1.style='display:block;color:red;'}"></input>
+      <div id="div1" style="display:none">
+        <text>标题、内容、分类均不能为空！</text>
+      </div>
+    </form>
+  <% end %>
+</div>

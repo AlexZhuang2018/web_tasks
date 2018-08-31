@@ -1,0 +1,48 @@
+<div class="container" style="padding: 10px 50px 50px;">
+  <% if session[:username]==nil %>
+    <text style="color:red;"> Please login first! </text>
+    <br>
+    <a href="/front/login"> Click me to login </a>
+  <% else %>
+    <a href="/front/home"> Back to the home </a>
+    <br><br>
+    <button type="button" class="btn btn-primary" onclick="location.href='/front/my_comments'">My comments</button>
+    <text> &nbsp;&nbsp;&nbsp;&nbsp;</text>
+    <button type="button" class="btn btn-primary" onclick="location.href='/front/my_feedbacks'">My feedbacks</button>
+    <text> &nbsp;&nbsp;&nbsp;&nbsp;</text>
+    <button type="button" class="btn btn-primary" onclick="location.href='/front/change_password'">Change password</button>
+    <text> &nbsp;&nbsp;&nbsp;&nbsp;</text>
+    <button type="button" class="btn btn-primary" onclick="location.href='/front/logout'">Logout</button>
+    <hr>
+
+    <center>
+      <h2> Articles </h2>
+      <table class="table table-striped table-bordered" width='100%'>
+        <thead>
+          <tr>
+            <th width='30%' align='left'> Title </th>
+            <th width='10%' align='left'> Author </th>
+            <th width='30%' align='left'> Created_at </th>
+            <th width='10%' align='left'> Kinds </th>
+            <th width='10%' align='left'> Read this! </th>
+            <th width='10%' align='left'> Delete this! </th>
+          </tr>
+        </thead>
+
+        <% if @articles!=nil %>
+          <% @articles.each do |article| %>
+            <tr>
+              <td width='30%' align='left'><%= article.title %></td>
+              <td width='15%' align='center'><%= article.author %></td>
+              <td width='30%' align='left'><%= article.created_at %></td>
+              <td width='15%' align='center'><%= article.kinds %></td>
+              <td width='10%' align='center'><button type="button" name=article.id onclick='location.href="/front/article/<%= article.id %>"'>Read</button></td>
+              <td width='10%' align='center'><input type="button" value="Del" onclick="if(confirm('确认删除？')){location.href='/front/delete_article/<%= article.id %>'}else{return false;}"></input></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </center>
+
+  <% end %>
+</div>

@@ -1,0 +1,22 @@
+<div class="container" style="padding: 100px 100px 50px;">
+  <% if session[:adminname]==nil %>
+    <text style="color:red;"> Please login first! </text>
+    <br>
+    <a href="/back/login"> Click me to login </a>
+  <% else %>
+    <center>
+      <h1> Function_select </h1>
+      <input type="button" class="btn btn-primary btn-lg" value="文章管理" style="height:50px;width:500px;" onclick="location.href='/back/articles_admin'"></input>
+      <br><br>
+
+      <input type="button" class="btn btn-primary btn-lg" value="留言管理" style="height:50px;width:500px;" onclick="location.href='/back/comments_admin'"></input>
+      <br><br>
+
+      <input type="button" class="btn btn-primary btn-lg" value="意见反馈管理" style="height:50px;width:500px;" onclick="location.href='/back/feedbacks_admin'"></input>
+      <br><br>
+
+      <input type="button" class="btn btn-primary btn-lg" value="Logout" style="height:50px;width:500px;" onclick="location.href='/front/logout'"></input>
+      <br><br>
+    </center>
+  <% end %>
+</div>

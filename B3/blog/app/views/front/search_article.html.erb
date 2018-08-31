@@ -1,0 +1,43 @@
+<div class="container" style="padding: 50px 300px 50px;">
+  <% if session[:username]==nil %>
+    <text style="color:red;"> Please login first! </text>
+    <br>
+    <a href="/front/login"> Click me to login </a>
+  <% else %>
+    <a href="/front/home"> Cancel and back to the home </a>
+    <form action='/front/search_article_result' method='search_article_result'>
+      <center>
+        <h1> Search Article
+      </center>
+      <br><br>
+
+      <div class="input-group">
+        <span class="input-group-addon"> 请选择查询方式:</span>
+        <select name="fs">
+          <option value="按作者查询">按作者查询</option>
+          <option value="按分类查询">按分类查询</option>
+        </select>
+        <input type="button" class="btn btn-primary" value="Submit" onclick="if(fs.value=='按作者查询'){div3.style='display:block';div2.style='display:none'}else{div2.style='display:block';div3.style='display:none';author.value=''}"></input>
+      </div>
+
+      <br><br>
+
+      <div class="input-group" id='div3' style="display:none">
+         <input type="text" class="form-control" placeholder="Input the author:" name="author"></input>
+         <input type="button" class="btn btn-primary" value="Submit" onclick="form.submit()"></input>
+      </div>
+
+      <div class="input-group" id='div2' style="display:none">
+         <select name="kinds">
+           <option value="人文">人文</option>
+           <option value="科技">科技</option>
+           <option value="教育">教育</option>
+           <option value="娱乐">娱乐</option>
+           <option value="体育">体育</option>
+           <option value="军事">军事</option>
+         </select>
+         <input type="button" class="btn btn-primary" value="Submit" onclick="form.submit()"></input>
+      </div>
+    </form>
+  <% end %>
+</div>

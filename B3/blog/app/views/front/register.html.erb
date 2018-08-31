@@ -1,0 +1,28 @@
+<div class="container" style="padding: 100px 300px 50px;">
+  <form action='/front/register_result' method='register_result'>
+    <center>
+      <h1> Register
+      <br><br>
+      <div class="input-group">
+         <span class="input-group-addon"> username:</span>
+         <input type="text" class="form-control" placeholder="Input your name" name="username"></input>
+      </div>
+      <br>
+
+      <div class="input-group">
+         <span class="input-group-addon"> password:</span>
+         <input type="password" class="form-control" placeholder="Input password" name="password1"></input>
+      </div>
+      <br>
+
+      <div class="input-group">
+         <span class="input-group-addon"> password:</span>
+         <input type="password" class="form-control" placeholder="Input your password again" name="password2"></input>
+      </div>
+      <br>
+
+      <button class="btn btn-primary" type="button" onclick="if(password1.value==password2.value){form.submit()}else{div1.style='display:block;color:red;'}">Submit</button>
+      <div id="div1" style="display:none;"> 两次输入的密码不一致！</div>
+    </center>
+  </form>
+</div>

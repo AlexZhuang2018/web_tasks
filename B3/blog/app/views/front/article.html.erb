@@ -1,0 +1,52 @@
+<div class="container" style="padding: 50px 300px 50px;">
+  <% if session[:username]==nil %>
+    <text style="color:red;"> Please login first! </text>
+    <br>
+    <a href="/front/login"> Click me to login </a>
+  <% else %>
+    <% if session[:username]==nil %>
+      <a href="/back/function_select"> Back to the Function_select </a>
+    <% else %>
+      <a href="/front/home"> Back to the home </a>
+    <% end %>
+    <article>
+      <center><h1><%= @article.title %></h1></center>
+      <p><%= @article.content %></p>
+    </article>
+    <hr>
+    <h3>comments:</h3>
+
+    <% if @comments!=nil %>
+      <% @comments.each do |comment| %>
+        <p><%= comment.author %> say:</p>
+        <p><%= comment.commenter %></p>
+        <hr>
+      <% end %>
+    <% end %>
+    <hr>
+    <form action='/front/write_comment' method='write_comment'>
+      <h3>Write comment:</h3>
+      <textarea placeholder="Input the commenter:" rows="5" cols="70" name="commenter"></textarea>
+      <input type="button" class="btn btn-primary" value="Submit" onclick="if(commenter.value.length>0){form.submit()}else{div1.style='display:block;color:red;'}"></input>
+    </form>
+    <div id="div1" style="display:none">
+      <text>评论内容不能为空！</text>
+    </div>
+    <% if session[:adminname]!=nil %>
+      <br>
+      <form action='/back/pass' method='pass'>
+        <div style="display:none">
+          <input type='text' name="id" value="<%= @article.id %>">
+        </div>
+        <input type="submit" class="btn btn-primary btn-lg" value="Pass">
+      </form>
+      <br>
+      <form action='/back/fail' method='fail'>
+        <div style="display:none">
+          <input type='text' name="id" value="<%= @article.id %>">
+        </div>
+        <input type="submit" class="btn btn-primary btn-lg" value="Fail">
+      </form>
+    <% end %>
+  <% end %>
+</div>
